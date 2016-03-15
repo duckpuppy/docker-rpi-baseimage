@@ -22,11 +22,9 @@ install:
 before_script:
 - git clone --depth 1 https://github.com/duckpuppy/docker-rpi-baseimage.git "$IMAGE"
 script:
-- sudo make -C "$IMAGE" bootstrap ARCH="$ARCH" DIST="$DIST" IMAGE="$IMAGE" DEBOOTSTRAP="$DEBOOTSTRAP"
-  DEBOOTSTRAP_ARGS="$DEBOOTSTRAP_ARGS"
+- sudo make -C "$IMAGE" bootstrap ARCH="$ARCH" DIST="$DIST" IMAGE="$IMAGE" DEBOOTSTRAP="$DEBOOTSTRAP" DEBOOTSTRAP_ARGS="$DEBOOTSTRAP_ARGS"
 after_success:
 - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-- sudo make -C "$IMAGE" tags push ARCH="$ARCH" DIST="$DIST" IMAGE="$IMAGE" LATEST="$DIST"
-  REPOSITORY_IMAGE="$REPOSITORY_PREFIX/$REPOSITORY_NAME" ADDITIONAL_TAGS="$ADDITIONAL_TAGS"
+- sudo make -C "$IMAGE" tags push ARCH="$ARCH" DIST="$DIST" IMAGE="$IMAGE" LATEST="$DIST" REPOSITORY_IMAGE="$REPOSITORY_PREFIX/$REPOSITORY_NAME" ADDITIONAL_TAGS="$ADDITIONAL_TAGS"
 after_script:
 - docker images
