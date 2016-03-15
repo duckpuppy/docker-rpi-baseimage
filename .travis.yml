@@ -1,0 +1,35 @@
+language: bash
+
+sudo: required
+
+services:
+  - docker
+
+env:
+  global:
+    IMAGE="raspbian"
+    DIST="jessie"
+    MIRROR="http://ftp.us.debian.org/debian/"
+    DEBOOTSTRAP="qemu-debootstrap"
+    DEBOOTSTRAP_ARGS="--variant=minbase $DIST $MIRROR"
+    REPOSITORY_PREFIX="paikens"
+    REPOSITORY_NAME="rpi-baseimage"
+    ADDITIONAL_TAGS="1"
+    ARCH="armhf"
+
+install:
+  - sudo apt-get update
+  - sudo apt-get install -y debian-archive-keyring debootstrap qemu-user-static binfmt-support
+
+before_script:
+  - git clone --depth 1 https://github.com/duckpuppy/docker-rpi-baseimage.git "$IMAGE"
+
+script:
+  - sudo make -C "$IMAGE" bootstrap ARCH="$ARCH" DIST="$DIST" IMAGE="$IMAGE" DEBOOTSTRAP="$DEBOOTSTRAP" DEBOOTSTRAP_ARGS="$DEBOOTSTRAP_ARGS"
+
+after_success:
+  - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - sudo make -C "$IMAGE" tags push ARCH="$ARCH" DIST="$DIST" IMAGE="$IMAGE" LATEST="$DIST" REPOSITORY_IMAGE="$REPOSITORY_PREFIX/$REPOSITORY_NAME" ADDITIONAL_TAGS="$ADDITIONAL_TAGS"
+
+after_script:
+  - docker images
