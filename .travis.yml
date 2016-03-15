@@ -1,35 +1,32 @@
 language: bash
-
 sudo: required
-
 services:
-  - docker
-
+- docker
 env:
   global:
-    IMAGE="raspbian"
-    DIST="jessie"
-    MIRROR="http://ftp.us.debian.org/debian/"
-    DEBOOTSTRAP="qemu-debootstrap"
-    DEBOOTSTRAP_ARGS="--variant=minbase $DIST $MIRROR"
-    REPOSITORY_PREFIX="paikens"
-    REPOSITORY_NAME="rpi-baseimage"
-    ADDITIONAL_TAGS="1"
-    ARCH="armhf"
-
+  - IMAGE="raspbian" 
+  - DIST="jessie" 
+  - MIRROR="http://ftp.us.debian.org/debian/" 
+  - DEBOOTSTRAP="qemu-debootstrap"
+  - DEBOOTSTRAP_ARGS="--variant=minbase $DIST $MIRROR" 
+  - REPOSITORY_PREFIX="paikens"
+  - REPOSITORY_NAME="rpi-baseimage" 
+  - ADDITIONAL_TAGS="1" 
+  - ARCH="armhf"
+  - secure: Ud3Scp+KNKbjga8wgowM4dNBSdkWP1gFCBD+q9PbB0zocS4gFwj4bXtJciJcLh//jZcyXPenM4ofNqxueJ0ERZ0GA61RYu8AN1gzE90cIFiXuIdKk+Idq/dnHOhN2oa2ZD+mbXdSa2qPbUMwAah2G+BwlGI31NUWsNTb5non/tjtkSMZ6/whmVhSFgMa5wqKt34I9JaqLSPEJ0tz1h2gZjmlvOmLwH4HPYFA6vV/SOXis1Ln56dOJh2xE3NFfF0vuzj2KSDTk8A5bcABgHZHrEgw+GU9nXYWK0FOll9vaYm08v1IfYWqioh048J9v2iACI/h9HdA2W8QugePuP4Ywl+XY558s7rAM4hcZaYKV51LiyQsO6FPsi2Akgjj9iOgLMjM5mgcapvf9Y0/qjmq4wyv9fadeDPXKrcOlTYc6T04fYWRukULIflffZ8Ln9JswiOsrn8C9kJXPZTtLXhdGXzYeKUtJp7obGcxxZ6Xeh+Nj4L5sKry656GANntNiP5Wx95ulVFP/DIWdgkBxMfPD03j7PYiTMhzqiTjz2SFR5HUVs5G7wRvp8d9P+Dq0jwlznpZzeiSAVN2WSiiNONBWFwwAjqNHUJpGnWWxFCYJ+Sl28t4PJq9cGVmrwiJkp+alEKe9zXkTKJqkSF+a1lRz+oyiK+l5vweKVVki6nNKU=
+  - secure: BL19t2QoH7+6Gvtj5gVE0LriebiT5cfxECHLaCVhwWisJW5RGPFzTAJ+crey3ZFAjIlwcJcOJCnu3A+XBkP7OBcPC1J/4KE7zWdLoRxGkm5CuqkdE+6xxNwmt/SxjoI0+JYXQFr01XvcUZt1IfAb26PNAq3hrrmm2I5QkiRK9J4C+9E/0iNJNGqMciTY6/ppf2uC6GwWXF1Q5TmBdxTVgiubc1iz7x5sXTvZ7d/7PteLnF3Mh0cn3iCJcnAtBznz5rBe/2WOw9FPwpJKPJZpR6pWFAabZksybZ99oVQ00rYFfCTRausqfPpdJ/PUhJNpRFinuODv5GLsrR6CxZOLlrY+6HL1MZtcGDO8wlOra9wGV3hsYdJOm0CAOdFy8nwrx/7/P4KB1fOen73IcGWpVDsQxrL3T/8L67W/Xu0QNu6OwEVHTbgp+WYArszQjCbmOPCob1YEa27m7wsUwjRTIRDz2XBPkcmm2AS9UL6GQ99f1X21XkyL62yz+HnDTe5Ak5RSGLNkANn0AvnuavDESfKtaLcfn2D1tUmjgBCJI/clIEtG6MH5G2/SX2HLv4mRpXr0ZFJgwHgE7lwTpNlkRZrGR/RG/HwbAA7sNAqNKFR15udYuZbgzHYwjxOZNAUtPSzWLSdX3J2s9JhsVxwHZ8aBlD0bzFFd6yywbxlSNKg=
+  - secure: dBcny4c0/kK5mJYK9ipENUWb9g9IRYFbzCEwJQNSd2RF6L3oEahAuUv0XLs3u8CthmWMZPcBnrltkNBeV0HPVRZTbBcePgHMFB5w0deBY4OxTXoryydnjJQtgmOyZSCQPOCjqgecJ5lq9vnxF5dtFxAgSkuTSRsE5r6DQ8xEt7E5eyfokTzBFtLd2QuuUXZNtg7GGdTtNBHILfvstsb9+mKuVq4au8ZcrChOQIC9XnMyhbWJ43vIENjAvuKDbvne6sE7WNUe8rjiNRCPpKg6+92+2dEsKJ3uhUX//TZKOs6DqiphDw+a/8uRYdB1O6piXDH3U32VDsB9rOxBCeBtXTH0nlVggYawlUcgrLzVTHSW6N96ATMntU2yG7bs5LI3omjlSMj5La0DKB/cbpEGaNMvqKCGjTfKm3ckj92ps/zXa+rl2gzH2+JJKxGW1sK1m6Z+kF44T0uxDG4EtF8df66zLT4RBhLqFOMv5JYVvNKUwKjMmONQdJnbrNkzPiaY6zFzQ85JyM6U1TzJiCFTtuHPybqTadyTRS5scl06cXw1SXxaw5nQOH/5SklR9WpDKi8eXfSYVw4eIsZC/ivO5wM029sJTrdjyGYOB52tSPh875ucT1AAY2x13hwRYlAlE0FdWkF1odXLfXKlNjOetGD1vmf6rA9U4ZzzSZVQSSM=
 install:
-  - sudo apt-get update
-  - sudo apt-get install -y debian-archive-keyring debootstrap qemu-user-static binfmt-support
-
+- sudo apt-get update
+- sudo apt-get install -y debian-archive-keyring debootstrap qemu-user-static binfmt-support
 before_script:
-  - git clone --depth 1 https://github.com/duckpuppy/docker-rpi-baseimage.git "$IMAGE"
-
+- git clone --depth 1 https://github.com/duckpuppy/docker-rpi-baseimage.git "$IMAGE"
 script:
-  - sudo make -C "$IMAGE" bootstrap ARCH="$ARCH" DIST="$DIST" IMAGE="$IMAGE" DEBOOTSTRAP="$DEBOOTSTRAP" DEBOOTSTRAP_ARGS="$DEBOOTSTRAP_ARGS"
-
+- sudo make -C "$IMAGE" bootstrap ARCH="$ARCH" DIST="$DIST" IMAGE="$IMAGE" DEBOOTSTRAP="$DEBOOTSTRAP"
+  DEBOOTSTRAP_ARGS="$DEBOOTSTRAP_ARGS"
 after_success:
-  - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - sudo make -C "$IMAGE" tags push ARCH="$ARCH" DIST="$DIST" IMAGE="$IMAGE" LATEST="$DIST" REPOSITORY_IMAGE="$REPOSITORY_PREFIX/$REPOSITORY_NAME" ADDITIONAL_TAGS="$ADDITIONAL_TAGS"
-
+- docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+- sudo make -C "$IMAGE" tags push ARCH="$ARCH" DIST="$DIST" IMAGE="$IMAGE" LATEST="$DIST"
+  REPOSITORY_IMAGE="$REPOSITORY_PREFIX/$REPOSITORY_NAME" ADDITIONAL_TAGS="$ADDITIONAL_TAGS"
 after_script:
-  - docker images
+- docker images
