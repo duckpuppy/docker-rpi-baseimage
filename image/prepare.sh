@@ -7,6 +7,8 @@ set -x
 useradd -u 911 -U -d /config -s /bin/false abc
 usermod -G users abc
 
+mkdir -p /app /config /defaults
+
 ## Temporarily disable dpkg fsync to make building faster.
 if [[ ! -e /etc/dpkg/dpkg.cfg.d/docker-apt-speedup ]]; then
 	echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/docker-apt-speedup
